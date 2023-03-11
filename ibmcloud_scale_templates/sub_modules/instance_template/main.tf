@@ -163,6 +163,7 @@ module "compute_cluster_instances" {
   vsi_meta_public_key  = var.create_separate_namespaces == true ? module.generate_compute_cluster_keys.public_key_content : module.generate_storage_cluster_keys.public_key_content
   depends_on           = [module.compute_cluster_ingress_security_rule, module.compute_cluster_ingress_security_rule_wt_bastion, module.compute_cluster_ingress_security_rule_wo_bastion, module.compute_egress_security_rule, var.vpc_custom_resolver_id]
   resource_tags        = var.scale_cluster_resource_tags
+  key_protect_crn      = var.key_protect_crn
 }
 
 data "ibm_is_instance_profile" "storage_profile" {
@@ -213,6 +214,8 @@ module "storage_cluster_instances" {
   vsi_meta_public_key  = module.generate_storage_cluster_keys.public_key_content
   depends_on           = [module.storage_cluster_ingress_security_rule, module.storage_cluster_ingress_security_rule_wo_bastion, module.storage_cluster_ingress_security_rule_wt_bastion, module.storage_egress_security_rule, var.vpc_custom_resolver_id]
   resource_tags        = var.scale_cluster_resource_tags
+  key_protect_crn      = var.key_protect_crn
+
 }
 
 module "storage_cluster_bare_metal_server" {
@@ -255,6 +258,7 @@ module "storage_cluster_tie_breaker_instance" {
   vsi_meta_public_key  = module.generate_storage_cluster_keys.public_key_content
   depends_on           = [module.storage_cluster_ingress_security_rule, module.storage_cluster_ingress_security_rule_wo_bastion, module.storage_cluster_ingress_security_rule_wt_bastion, module.storage_egress_security_rule, var.vpc_custom_resolver_id]
   resource_tags        = var.scale_cluster_resource_tags
+  key_protect_crn      = var.key_protect_crn
 }
 
 module "activity_tracker" {

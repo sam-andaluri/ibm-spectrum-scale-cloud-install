@@ -296,3 +296,9 @@ variable "bastion_user" {
   default     = "ubuntu"
   description = "Provide the username for Bastion login."
 }
+
+variable "key_protect_crn" {
+  type        = string
+  default     = "none"
+  description = "Key Protect CRN for the CMEK to encrypt boot volumes."
+}

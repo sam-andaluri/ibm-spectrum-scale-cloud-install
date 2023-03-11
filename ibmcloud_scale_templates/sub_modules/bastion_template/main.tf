@@ -54,6 +54,7 @@ module "bastion_vsi" {
   vsi_profile         = var.bastion_vsi_profile
   vsi_image_id        = data.ibm_is_image.bastion_image.id
   vsi_user_public_key = [data.ibm_is_ssh_key.bastion_ssh_key.id]
+  key_protect_crn      = var.key_protect_crn
 }
 
 module "bastion_attach_fip" {
