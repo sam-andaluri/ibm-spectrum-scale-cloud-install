@@ -519,7 +519,7 @@ def initialize_scale_storage_details(az_count, fs_mount, block_size, disk_detail
         data_replicas = 2
         metadata_replicas = 2
     else:
-        data_replicas = 1
+        data_replicas = 2
         metadata_replicas = 2
 
     storage['scale_storage'].append({"filesystem": pathlib.PurePath(fs_mount).name,
