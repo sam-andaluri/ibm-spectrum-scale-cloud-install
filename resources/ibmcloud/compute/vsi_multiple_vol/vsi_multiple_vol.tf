@@ -26,6 +26,7 @@ variable "vsi_meta_private_key" {}
 variable "vsi_meta_public_key" {}
 variable "resource_group_id" {}
 variable "resource_tags" {}
+variable "key_protect_crn" {}
 
 data "ibm_is_instance_profile" "itself" {
   name = var.vsi_profile
@@ -154,6 +155,7 @@ resource "ibm_is_instance" "itself" {
 
   boot_volume {
     name = format("%s-boot-%s", var.vsi_name_prefix, each.value.sequence_string)
+    encryption = var.key_protect_crn
   }
 }
 
